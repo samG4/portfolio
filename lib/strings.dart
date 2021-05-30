@@ -10,9 +10,9 @@ const String HOME_LIKE_ANIME =
 
 const String MENU_JOURNEY = "My Experience";
 const String MENU_ARTICLE = "Blogs";
-const String MENU_CONTACT = "Contact Me";
+const String MENU_CONTACT = "About Me";
 
-const String MENU_ROLES = "Roles and Responsibilities - ";
+const String MENU_ROLES = "Roles I played here are...";
 
 const String PROJ_MARROW = "Marrow";
 const String PROJ_MARROW_ICON =
@@ -45,34 +45,77 @@ const List<String> PROJ_WALL_STREET_KEY_ROLES = [
   "Added a dashboard to view or save the sales report",
   "Added a feature to authenticate each order placement"
 ];
+
 const String PROJ_CROSS_HELMET = "Cross Helmet";
 const String PROJ_CROSS_HELMET_ICON =
     "https://play-lh.googleusercontent.com/LgHq_QjlK1CV6wklC49x7IUu1-k__aQpCfHyOt-7qXKxrsfy4uf1yj409E_ZVeDY4Q=s180-rw";
 const String PROJ_CROSS_HELMET_DATE = "Working from Sept. 2020";
+const String PROJ_CROSS_HELMET_INTRO =
+    "This is the coolest project where I have worked. In simpler words, I only have to deal with communicating required data to bike helmet and visa versa. I was working with another android developer. Code base is mostly written in Java and some 20% in Kotlin.";
+const List<String> PROJ_CROSS_HELMET_KEY_ROLES = [
+  "Added a individual and group call based feature by using Agora Sdk",
+  "Integrated Mapbox for areas where google services are prohibited",
+  "Integrated What3Words feature for voice search",
+  "Showing the navigation related data on helmet - includes step path, covered distance, remaining distance, next direction and weather info",
+];
 
 const String PROJ_FOLX = "Folx";
 const String PROJ_FOLX_ICON = "assets/images/folx.png";
 const String PROJ_FOLX_DATE = "Working from Nov. 2020";
+const String PROJ_FOLX_INTRO =
+    "A tinder like proj, where the people are suggested based on some common interest not by distance. This was completely written from scratch in Flutter.";
+const List<String> PROJ_FOLX_KEY_ROLES = [
+  "Implemented the given UI",
+  "Feature to Add, Update and Delete Images. Images were stored in firebase cloud storage",
+  "Suggestions to be saved locally, and had a sync logic to update it based on app launch and time interval",
+  "Implemented features like Like, Dislike, Superlike and Chat",
+  "Handled all communications through cloud functions",
+  "Have setup the complete db layer in cloud store"
+];
 
 const String PROJ_CROTON = "Croton";
 const String PROJ_CROTON_ICON =
     "https://play-lh.googleusercontent.com/U0KMb1T-qGKF-BkyqDWiZdEgvgVp5utHAi7TIpW-NiLd-TG8pq_dh9zvLZ96UoRr6XJJ=s180-rw";
 const String PROJ_CROTON_DATE = "Sept. 2019 - Mar. 2020";
+const String PROJ_CROTON_INTRO =
+    "An app that helps people working in indian plantation sector. It started as a simple city level proj and later scaled to some parts of india. When started we were just 3 people - 2 devs and 1 from marketing";
+const List<String> PROJ_CROTON_KEY_ROLES = [
+  "Was in decision making team",
+  "Implemented the front end completely",
+  "Solved many hiccups while meeting users many demands",
+  "High speed development and shipping"
+];
 
 const String PROJ_WHATS_EASY = "Whats Easy";
 const String PROJ_WHATS_EASY_ICON = "assets/images/whats_easy.png";
 const String PROJ_WHATS_EASY_DATE = "A day in Mar 2021:-)";
+const String PROJ_WHATS_EASY_INTRO =
+    "Its just a personal project which i actively use to send whatsapp messages to people from my call-logs. Now I don't need to save their phone number. Mainly this is helpful when I want to send location to someone, or one time text";
 
 const String PROJ_ETEXT = "eText";
 const String PROJ_ETEXT_ICON =
     "https://play-lh.googleusercontent.com/IINCgeuyd-R06k0NwGiEf3qGz67eMFZff1M2tJicE5UPDAzVTt6QyxA4PKZsL1d-DfE=s180-rw";
 const String PROJ_ETEXT_DATE = "Jan. 2018 - Apr. 2019";
+const String PROJ_ETEXT_INTRO =
+    "My first android project working in an organization.";
+const List<String> PROJ_ETEXT_KEY_ROLES = [
+  "Implement or update features requirements",
+  "Converted many legacy UX to constraint layout",
+  "Gained the complete control on the project components in less than a year",
+  "Modified lot many legacy code pieces to make the development better."
+];
 
-const String PROJ_PLUGINS = "Plugins for eText and Revel";
+const String PROJ_PLUGINS = "Plugins";
 const String PROJ_PLUGINS_ICON = "assets/images/plugins.png";
 const String PROJ_PLUGINS_DATE = "Jan. 2018 - Apr. 2019";
+const String PROJ_PLUGINS_INRO =
+    "Got a chance to create libraries that were getting used in two live projects - eText and Revel. In 4 months I owned the development and maintenance";
 
 const String ORG_MARROW = "Neuroglia Health Pvt Ltd";
 const String ORG_CTS = "Cognizant Technology Solutions";
 const String ORG_PERSONAL_PROJ = "Personal Project";
 const String ORG_FREELANCING = "Worked as Freelancer";
+
+const int TAG_FULLTIME = 1;
+const int TAG_FREELANCE = 2;
+const int TAG_PERSONAL = 3;
