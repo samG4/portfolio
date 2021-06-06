@@ -9,8 +9,8 @@ const String HOME_LIKE_ANIME =
     "I like reading manga and anime. Big fan of One Piece.";
 
 const String MENU_JOURNEY = "My Experience";
-const String MENU_ARTICLE = "Blogs";
-const String MENU_CONTACT = "About Me";
+const String MENU_ARTICLE = "About Me";
+const String MENU_CONTACT = "Say Hello";
 
 const String MENU_ROLES = "Roles I played here are...";
 
@@ -116,6 +116,16 @@ const String ORG_CTS = "Cognizant Technology Solutions";
 const String ORG_PERSONAL_PROJ = "Personal Project";
 const String ORG_FREELANCING = "Worked as Freelancer";
 
+
+const String CONTACT_ME_HEADING = "Thanks for taking the time to reach out. How can I help you today?";
+const String MY_INTRO_HEAD = "Hi, I'm Samrat. ";
+const String MY_INTRO_HEAD_HAJIMEMASHITE = "はじめまして";
+const String MY_INTRO_HEAD_HAJIMEMASHITE_TOOLTIP = "Nice to meet you.";
+
+const String MY_INTRO_BODY = "My journey began as android developer at 2018. "
+    "Since then, I've collaborated in start-ups, service based MNCs and hackathons. I got an opportunity to collaborate with talented people to create apps for both business and consumer use. I'm confident, naturally curious, quick learner and have learnt many different skills. I love what I do.";
+const String DEV_INTRO = "I like to design and code and bring ideas to life in mobile apps. I have coded continuously for 8-10hrs during hackathons";
+const String DEV_TOOLS = "Android Studio, Visual Code, Big Query, Firebase services, Bitbucket, Github, Terminal";
 const int TAG_FULLTIME = 1;
 const int TAG_FREELANCE = 2;
 const int TAG_PERSONAL = 3;
