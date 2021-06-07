@@ -975,13 +975,19 @@ class _ContactPgState extends State<ContactPg> {
                                     await launch(_emailLaunchUri.toString());
                                   } catch (e) {}
                                 },
-                                icon: Icon(AntDesign.mail,
-                                    size: 55, color: Colors.white),
-                                label: Text(
-                                  'samrat.gara94@gmail.com',
-                                  style: GoogleFonts.workSans(
-                                    color: Colors.white,
-                                    fontSize: 18,
+                                icon: Padding(
+                                  padding: EdgeInsets.only(left:8, right: 4, bottom: 2),
+                                  child: Icon(AntDesign.mail,
+                                      size: 55, color: Colors.white),
+                                ),
+                                label: Padding(
+                                  padding: EdgeInsets.only(left:4, right: 8),
+                                  child: Text(
+                                    'samrat.gara94@gmail.com',
+                                    style: GoogleFonts.workSans(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
                                   ),
                                 ),
                                 style: ButtonStyle(
@@ -1222,7 +1228,7 @@ class ProjectCard extends StatelessWidget {
                                 padding: EdgeInsets.all(10),
                                 child: Text(urlDetails == null
                                     ? 'Got it'
-                                    : "More Details"))),
+                                    : "App link"))),
                       )
                     ],
                   ));
