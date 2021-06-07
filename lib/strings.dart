@@ -111,13 +111,13 @@ const String PROJ_PLUGINS_DATE = "Jan. 2018 - Apr. 2019";
 const String PROJ_PLUGINS_INRO =
     "Got a chance to create libraries that were getting used in two live projects - eText and Revel. In 4 months I owned the development and maintenance";
 
-const String ORG_MARROW = "Neuroglia Health Pvt Ltd";
-const String ORG_CTS = "Cognizant Tech Sol";
+const String ORG_MARROW = "Dailyrounds";
+const String ORG_CTS = "Cognizant";
 const String ORG_PERSONAL_PROJ = "Personal Project";
 const String ORG_FREELANCING = "Worked as Freelancer";
 
 
-const String CONTACT_ME_HEADING = "Thanks for taking the time to reach out. Feel free to reach out through any platforms mentioned below.";
+const String CONTACT_ME_HEADING = "Thanks for taking the time to reach out. Feel free to reach out.";
 const String MY_INTRO_HEAD = "Hi, I'm Samrat. ";
 const String MY_INTRO_HEAD_HAJIMEMASHITE = "はじめまして";
 const String MY_INTRO_HEAD_HAJIMEMASHITE_TOOLTIP = "Nice to meet you.";

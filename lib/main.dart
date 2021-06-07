@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -92,13 +94,65 @@ class _MyHomePageState extends State<MyHomePage> {
                     });
                   }),
                 ),
-                SizedBox(
-                  width: 20,
-                ),
               ],
             )
           : null,
       backgroundColor: bgColor,
+      drawer: size.width < 1000 ? Drawer(
+        child: Container(
+          color: drawerColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                child: CircleAvatar(
+                  radius: 75,
+                  backgroundImage:
+                  ExactAssetImage('assets/images/myself.jpg'),
+                ),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: new Border.all(
+                    color: Colors.white,
+                    width: 4.0,
+                  ),
+                ),
+              ),
+              Column(
+                children: [
+                  Text(
+                    'Follow me on -',
+                    style: GoogleFonts.abel(
+                        fontSize: 16, color: Colors.white),
+                  ),
+                  Wrap(
+                    children: [
+                      IconButton(
+                        onPressed: () async {
+                          await launch(URL_MY_GITHUB);
+                        },
+                        icon: Icon(AntDesign.github,
+                            color: contactMeCardBg),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      IconButton(
+                        onPressed: () async {
+                          await launch(URL_MY_INSTA);
+                        },
+                        icon: Icon(AntDesign.instagram,
+                            color: contactMeCardBg),
+                      ),
+                    ],
+                  ),
+                ],
+              )
+
+            ],
+          ),
+        ),
+      ) : null,
       body: Column(
         children: [
           Expanded(
@@ -108,6 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   visible: size.width >= 1000,
                   child: Expanded(
                     child: Container(
+                      height: size.height,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -173,6 +228,35 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           SizedBox(
+                            height: 16,
+                          ),
+                          Text(
+                            'Follow me on -',
+                            style: GoogleFonts.abel(
+                                fontSize: 16, color: Colors.white),
+                          ),
+                          Wrap(
+                            children: [
+                              IconButton(
+                                onPressed: () async {
+                                  await launch(URL_MY_GITHUB);
+                                },
+                                icon: Icon(AntDesign.github,
+                                    color: contactMeCardBg),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              IconButton(
+                                onPressed: () async {
+                                  await launch(URL_MY_INSTA);
+                                },
+                                icon: Icon(AntDesign.instagram,
+                                    color: contactMeCardBg),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
                             height: 100,
                           )
                         ],
@@ -211,302 +295,295 @@ class AboutMePg extends StatelessWidget {
     Size screenSize = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Container(
-        height: screenSize.width > 800
-            ? screenSize.height + 100
-            : screenSize.height * 1.8,
+        height: screenSize.height < 600
+            ? screenSize.height * 2.2
+            : screenSize.height < 800 || screenSize.width < 800 ? screenSize.height * 1.8 : screenSize.height + 200,
         color: bgColor,
-        child: Column(
+        child: Stack(
+          alignment: Alignment.center,
+          clipBehavior: Clip.hardEdge,
           children: [
-            Expanded(
-              child: Stack(
-                alignment: Alignment.center,
-                clipBehavior: Clip.hardEdge,
-                children: [
-                  Positioned(
-                    top: 0,
-                    child: Container(
-                      margin: EdgeInsets.only(top: 50),
-                      padding: EdgeInsets.only(top: 30),
-                      color: aboutMeAccent,
-                      width: MediaQuery.of(context).size.width,
-                      height: 400,
-                      child: Center(
-                        child: ConstrainedBox(
-                            constraints: BoxConstraints(maxWidth: 800),
-                            child: Column(
-                              children: [
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        MY_INTRO_HEAD,
-                                        style: GoogleFonts.heebo(
-                                            fontSize: 28, color: lightTextColr),
-                                      ),
-                                      Tooltip(
-                                        message:
-                                            MY_INTRO_HEAD_HAJIMEMASHITE_TOOLTIP,
-                                        child: Text(
-                                          MY_INTRO_HEAD_HAJIMEMASHITE,
-                                          style: GoogleFonts.heebo(
-                                              fontSize: 28,
-                                              color: lightTextColr,
-                                              decoration:
-                                                  TextDecoration.underline),
-                                        ),
-                                      ),
-                                    ]),
-                                SizedBox(
-                                  height: 30,
-                                ),
-                                Text(
-                                  MY_INTRO_BODY,
-                                  style: GoogleFonts.abel(
-                                    fontSize: 20,
-                                    color: lightTextColr,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            )),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 280,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: aboutMeAccent.withAlpha(100)),
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        color: bgColor,
-                        boxShadow: [
-                          BoxShadow(
-                            color: aboutMeAccent.withOpacity(0.4),
-                            blurRadius: 2.0,
-                            offset: Offset(
-                                0.0, 2.0), // shadow direction: bottom right
-                          )
-                        ],
-                      ),
-                      child: Flex(
-                        direction: screenSize.width > 800
-                            ? Axis.horizontal
-                            : Axis.vertical,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+            Positioned(
+              top: 0,
+              child: Container(
+                margin: EdgeInsets.only(top: 50),
+                padding: EdgeInsets.only(top: 30),
+                color: aboutMeAccent,
+                width: MediaQuery.of(context).size.width,
+                height: 400,
+                child: Center(
+                  child: ConstrainedBox(
+                      constraints: BoxConstraints(maxWidth: 800),
+                      child: Column(
                         children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 30),
-                            child: Column(
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
-                                  Icons.developer_mode_rounded,
-                                  color: aboutMeAccent,
-                                  size: 50,
-                                ),
-                                SizedBox(
-                                  height: 16,
-                                ),
                                 Text(
-                                  "Developer",
-                                  style: GoogleFonts.workSans(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 20),
+                                  MY_INTRO_HEAD,
+                                  style: GoogleFonts.heebo(
+                                      fontSize: 28, color: lightTextColr),
                                 ),
-                                SizedBox(
-                                  height: 16,
-                                ),
-                                ConstrainedBox(
-                                  constraints: BoxConstraints(maxWidth: 300),
+                                Tooltip(
+                                  message:
+                                      MY_INTRO_HEAD_HAJIMEMASHITE_TOOLTIP,
                                   child: Text(
-                                    DEV_INTRO,
-                                    style: GoogleFonts.abel(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                    ),
-                                    textAlign: TextAlign.center,
+                                    MY_INTRO_HEAD_HAJIMEMASHITE,
+                                    style: GoogleFonts.heebo(
+                                        fontSize: 28,
+                                        color: lightTextColr,
+                                        decoration:
+                                            TextDecoration.underline),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  "Languages I speak:",
-                                  style: GoogleFonts.workSans(
-                                      color: aboutMeAccent, fontSize: 20),
-                                ),
-                                SkillRow(skillName: "Kotlin", yearSt: 2018),
-                                SkillRow(skillName: "Java", yearSt: 2018),
-                                SkillRow(skillName: "Dart", yearSt: 2019),
-                                SkillRow(skillName: "Sql", yearSt: 2018),
-                                SkillRow(skillName: "Typescript", yearSt: 2021),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  '--------------------',
-                                  style: TextStyle(color: Colors.black26),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Dev Tools/Services:",
-                                  style: GoogleFonts.workSans(
-                                      color: aboutMeAccent, fontSize: 20),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                ConstrainedBox(
-                                  constraints: BoxConstraints(maxWidth: 300),
-                                  child: Text(
-                                    DEV_TOOLS,
-                                    style: GoogleFonts.abel(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ]),
+                          SizedBox(
+                            height: 30,
                           ),
-                          if (screenSize.width > 800)
-                            Container(
-                              width: 1,
-                              height: 550,
-                              color: aboutMeAccent.withAlpha(100),
-                            )
-                          else
-                            Container(
-                              width: 380,
-                              height: 1,
-                              color: aboutMeAccent.withAlpha(100),
+                          Text(
+                            MY_INTRO_BODY,
+                            style: GoogleFonts.abel(
+                              fontSize: 20,
+                              color: lightTextColr,
                             ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 30),
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.local_activity,
-                                  color: aboutMeAccent,
-                                  size: 50,
-                                ),
-                                SizedBox(
-                                  height: 16,
-                                ),
-                                Text(
-                                  "Activities",
-                                  style: GoogleFonts.workSans(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 20),
-                                ),
-                                SizedBox(
-                                  height: 16,
-                                ),
-                                ConstrainedBox(
-                                  constraints: BoxConstraints(maxWidth: 300),
-                                  child: Text(
-                                    ACT_INTRO,
-                                    style: GoogleFonts.abel(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  "Things I have interest in:",
-                                  style: GoogleFonts.workSans(
-                                      color: aboutMeAccent, fontSize: 20),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Sketching',
-                                  style: GoogleFonts.abel(
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Dancing',
-                                  style: GoogleFonts.abel(
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Anime',
-                                  style: GoogleFonts.abel(
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Image and Video Editing',
-                                  style: GoogleFonts.abel(
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 16,
-                                ),
-                                Text(
-                                  '--------------------',
-                                  style: TextStyle(color: Colors.black26),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Tools:",
-                                  style: GoogleFonts.workSans(
-                                      color: aboutMeAccent, fontSize: 20),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                ConstrainedBox(
-                                  constraints: BoxConstraints(maxWidth: 300),
-                                  child: Text(
-                                    ACT_TOOLS,
-                                    style: GoogleFonts.abel(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
+                            textAlign: TextAlign.center,
+                          ),
                         ],
-                      ),
-                    ),
-                  )
-                ],
+                      )),
+                ),
               ),
             ),
-            PaddedDivider()
+            Positioned(
+              top: 280,
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: aboutMeAccent.withAlpha(100)),
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  color: bgColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: aboutMeAccent.withOpacity(0.4),
+                      blurRadius: 2.0,
+                      offset: Offset(
+                          0.0, 2.0), // shadow direction: bottom right
+                    )
+                  ],
+                ),
+                child: Flex(
+                  direction: screenSize.width > 800
+                      ? Axis.horizontal
+                      : Axis.vertical,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 20, horizontal: 30),
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.developer_mode_rounded,
+                            color: aboutMeAccent,
+                            size: 50,
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Text(
+                            "Developer",
+                            style: GoogleFonts.workSans(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20),
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          ConstrainedBox(
+                            constraints: BoxConstraints(maxWidth: 300),
+                            child: Text(
+                              DEV_INTRO,
+                              style: GoogleFonts.abel(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Languages I speak:",
+                            style: GoogleFonts.workSans(
+                                color: aboutMeAccent, fontSize: 20),
+                          ),
+                          SkillRow(skillName: "Kotlin", yearSt: 2018),
+                          SkillRow(skillName: "Java", yearSt: 2018),
+                          SkillRow(skillName: "Dart", yearSt: 2019),
+                          SkillRow(skillName: "Sql", yearSt: 2018),
+                          SkillRow(skillName: "Typescript", yearSt: 2021),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '--------------------',
+                            style: TextStyle(color: Colors.black26),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Dev Tools/Services:",
+                            style: GoogleFonts.workSans(
+                                color: aboutMeAccent, fontSize: 20),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          ConstrainedBox(
+                            constraints: BoxConstraints(maxWidth: 300),
+                            child: Text(
+                              DEV_TOOLS,
+                              style: GoogleFonts.abel(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (screenSize.width > 800)
+                      Container(
+                        width: 1,
+                        height: 550,
+                        color: aboutMeAccent.withAlpha(100),
+                      )
+                    else
+                      Container(
+                        width: 380,
+                        height: 1,
+                        color: aboutMeAccent.withAlpha(100),
+                      ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 20, horizontal: 30),
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.local_activity,
+                            color: aboutMeAccent,
+                            size: 50,
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Text(
+                            "Activities",
+                            style: GoogleFonts.workSans(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20),
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          ConstrainedBox(
+                            constraints: BoxConstraints(maxWidth: 300),
+                            child: Text(
+                              ACT_INTRO,
+                              style: GoogleFonts.abel(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Things I have interest in:",
+                            style: GoogleFonts.workSans(
+                                color: aboutMeAccent, fontSize: 20),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Sketching',
+                            style: GoogleFonts.abel(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Dancing',
+                            style: GoogleFonts.abel(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Anime',
+                            style: GoogleFonts.abel(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Image and Video Editing',
+                            style: GoogleFonts.abel(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Text(
+                            '--------------------',
+                            style: TextStyle(color: Colors.black26),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Tools:",
+                            style: GoogleFonts.workSans(
+                                color: aboutMeAccent, fontSize: 20),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          ConstrainedBox(
+                            constraints: BoxConstraints(maxWidth: 300),
+                            child: Text(
+                              ACT_TOOLS,
+                              style: GoogleFonts.abel(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
@@ -579,284 +656,353 @@ class _ContactPgState extends State<ContactPg> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(mainAxisSize: MainAxisSize.max, children: [
-        Wrap(
-          children: [
-            ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 800),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Text(
-                    CONTACT_ME_HEADING,
-                    style: GoogleFonts.ptSans(
-                        textStyle: Theme.of(context).textTheme.headline3,
-                        color: drawerColor),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: TextFormField(
-                            controller: _name,
-                            style: GoogleFonts.lato(
-                              color: darkTextColr,
-                              letterSpacing: 2,
-                              fontSize: 18,
-                            ),
-                            cursorColor: darkTextColr,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: lightTextColr,
-                              labelText: "Name",
-                              labelStyle: Theme.of(context)
-                                  .textTheme
-                                  .headline5!
-                                  .copyWith(color: drawerColor),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: drawerColor.withOpacity(0.4),
-                                    width: 1.0),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: drawerColor.withOpacity(0.8),
-                                    width: 1.0),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: TextFormField(
-                            controller: _email,
-                            style: GoogleFonts.lato(
-                              color: darkTextColr,
-                              letterSpacing: 2,
-                              fontSize: 18,
-                            ),
-                            cursorColor: darkTextColr,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: lightTextColr,
-                              labelText: "Email",
-                              labelStyle: Theme.of(context)
-                                  .textTheme
-                                  .headline5!
-                                  .copyWith(color: drawerColor),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: drawerColor.withOpacity(0.4),
-                                    width: 1.0),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: drawerColor.withOpacity(0.8),
-                                    width: 1.0),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Subject",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline5!
-                                .copyWith(color: drawerColor),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          TextFormField(
-                            controller: _subj,
-                            maxLines: 1,
-                            style: GoogleFonts.lato(
-                              color: Colors.black,
-                              letterSpacing: 2,
-                              fontSize: 18,
-                            ),
-                            cursorColor: darkTextColr,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: lightTextColr,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: drawerColor.withOpacity(0.4),
-                                    width: 1.0),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: drawerColor.withOpacity(0.8),
-                                    width: 1.0),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                          ),
-                        ]),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Message",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline5!
-                                .copyWith(color: drawerColor),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          TextFormField(
-                            controller: _body,
-                            maxLines: null,
-                            minLines: 8,
-                            style: GoogleFonts.lato(
-                              color: Colors.black,
-                              letterSpacing: 2,
-                              fontSize: 18,
-                            ),
-                            cursorColor: darkTextColr,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: lightTextColr,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: drawerColor.withOpacity(0.4),
-                                    width: 1.0),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: drawerColor.withOpacity(0.8),
-                                    width: 1.0),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                          ),
-                        ]),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(contactMeCardBg),
-                          padding:
-                              MaterialStateProperty.all<EdgeInsetsGeometry>(
-                                  EdgeInsets.symmetric(
-                                      horizontal: 70, vertical: 20)),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                      side: BorderSide(
-                                          color: lightTextColr, width: 2.0)))),
-                      child: Text(
-                        'Submit',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline5!
-                            .copyWith(color: lightTextColr),
-                      ),
-                      onPressed: () {
-                        var email = _email.text;
-                        var body = _body.text;
-                        var name = _name.text;
-                        var subj = _subj.text;
-                        if(email == null || email.isEmpty) {
-                          return;
-                        }
-                        if(body == null || body.isEmpty) {
-                          return;
-                        }
-                        if(name == null || name.isEmpty) {
-                          return;
-                        }
-                        if(subj == null || subj.isEmpty) {
-                          return;
-                        }
-                        final Uri _emailLaunchUri = Uri(
-                            scheme: 'mailto',
-                            path: 'samrat.garai94@gmail.com',
-                            queryParameters: {
-                              'subject': subj,
-                              'body': body,
-                            }
-                        );
-                        print(_emailLaunchUri.toString());
-                        launch(_emailLaunchUri.toString());
-                      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        child: Column(mainAxisSize: MainAxisSize.max, children: [
+          Wrap(
+            children: [
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 800),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
                     ),
-                  ),
-                  PaddedDivider(
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      IconButton(
-                        onPressed: () async{
-                          await launch(URL_MY_GITHUB);
-                        },
-                        icon: Icon(AntDesign.github),
+                    Text(
+                      CONTACT_ME_HEADING,
+                      style: GoogleFonts.ptSans(
+                          textStyle: Theme.of(context).textTheme.headline3,
+                          color: drawerColor),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: Padding(
+                    //         padding: EdgeInsets.symmetric(horizontal: 20),
+                    //         child: TextFormField(
+                    //           controller: _name,
+                    //           style: GoogleFonts.lato(
+                    //             color: darkTextColr,
+                    //             letterSpacing: 2,
+                    //             fontSize: 18,
+                    //           ),
+                    //           cursorColor: darkTextColr,
+                    //           decoration: InputDecoration(
+                    //             filled: true,
+                    //             fillColor: lightTextColr,
+                    //             labelText: "Name",
+                    //             labelStyle: Theme.of(context)
+                    //                 .textTheme
+                    //                 .headline5!
+                    //                 .copyWith(color: drawerColor),
+                    //             enabledBorder: OutlineInputBorder(
+                    //               borderSide: BorderSide(
+                    //                   color: drawerColor.withOpacity(0.4),
+                    //                   width: 1.0),
+                    //               borderRadius: BorderRadius.circular(12.0),
+                    //             ),
+                    //             focusedBorder: OutlineInputBorder(
+                    //               borderSide: BorderSide(
+                    //                   color: drawerColor.withOpacity(0.8),
+                    //                   width: 1.0),
+                    //               borderRadius: BorderRadius.circular(12.0),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Expanded(
+                    //       child: Padding(
+                    //         padding: EdgeInsets.symmetric(horizontal: 20),
+                    //         child: TextFormField(
+                    //           controller: _email,
+                    //           style: GoogleFonts.lato(
+                    //             color: darkTextColr,
+                    //             letterSpacing: 2,
+                    //             fontSize: 18,
+                    //           ),
+                    //           cursorColor: darkTextColr,
+                    //           decoration: InputDecoration(
+                    //             filled: true,
+                    //             fillColor: lightTextColr,
+                    //             labelText: "Email",
+                    //             labelStyle: Theme.of(context)
+                    //                 .textTheme
+                    //                 .headline5!
+                    //                 .copyWith(color: drawerColor),
+                    //             enabledBorder: OutlineInputBorder(
+                    //               borderSide: BorderSide(
+                    //                   color: drawerColor.withOpacity(0.4),
+                    //                   width: 1.0),
+                    //               borderRadius: BorderRadius.circular(12.0),
+                    //             ),
+                    //             focusedBorder: OutlineInputBorder(
+                    //               borderSide: BorderSide(
+                    //                   color: drawerColor.withOpacity(0.8),
+                    //                   width: 1.0),
+                    //               borderRadius: BorderRadius.circular(12.0),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // SizedBox(
+                    //   height: 16,
+                    // ),
+                    // Padding(
+                    //   padding: EdgeInsets.symmetric(horizontal: 20),
+                    //   child: Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         Text(
+                    //           "Subject",
+                    //           style: Theme.of(context)
+                    //               .textTheme
+                    //               .headline5!
+                    //               .copyWith(color: drawerColor),
+                    //         ),
+                    //         SizedBox(
+                    //           height: 4,
+                    //         ),
+                    //         TextFormField(
+                    //           controller: _subj,
+                    //           maxLines: 1,
+                    //           style: GoogleFonts.lato(
+                    //             color: Colors.black,
+                    //             letterSpacing: 2,
+                    //             fontSize: 18,
+                    //           ),
+                    //           cursorColor: darkTextColr,
+                    //           decoration: InputDecoration(
+                    //             filled: true,
+                    //             fillColor: lightTextColr,
+                    //             enabledBorder: OutlineInputBorder(
+                    //               borderSide: BorderSide(
+                    //                   color: drawerColor.withOpacity(0.4),
+                    //                   width: 1.0),
+                    //               borderRadius: BorderRadius.circular(8.0),
+                    //             ),
+                    //             focusedBorder: OutlineInputBorder(
+                    //               borderSide: BorderSide(
+                    //                   color: drawerColor.withOpacity(0.8),
+                    //                   width: 1.0),
+                    //               borderRadius: BorderRadius.circular(8.0),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ]),
+                    // ),
+                    // SizedBox(
+                    //   height: 16,
+                    // ),
+                    // Padding(
+                    //   padding: EdgeInsets.symmetric(horizontal: 20),
+                    //   child: Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         Text(
+                    //           "Message",
+                    //           style: Theme.of(context)
+                    //               .textTheme
+                    //               .headline5!
+                    //               .copyWith(color: drawerColor),
+                    //         ),
+                    //         SizedBox(
+                    //           height: 4,
+                    //         ),
+                    //         TextFormField(
+                    //           controller: _body,
+                    //           maxLines: null,
+                    //           minLines: 8,
+                    //           style: GoogleFonts.lato(
+                    //             color: Colors.black,
+                    //             letterSpacing: 2,
+                    //             fontSize: 18,
+                    //           ),
+                    //           cursorColor: darkTextColr,
+                    //           decoration: InputDecoration(
+                    //             filled: true,
+                    //             fillColor: lightTextColr,
+                    //             enabledBorder: OutlineInputBorder(
+                    //               borderSide: BorderSide(
+                    //                   color: drawerColor.withOpacity(0.4),
+                    //                   width: 1.0),
+                    //               borderRadius: BorderRadius.circular(8.0),
+                    //             ),
+                    //             focusedBorder: OutlineInputBorder(
+                    //               borderSide: BorderSide(
+                    //                   color: drawerColor.withOpacity(0.8),
+                    //                   width: 1.0),
+                    //               borderRadius: BorderRadius.circular(8.0),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ]),
+                    // ),
+                    // Padding(
+                    //   padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+                    //   child: ElevatedButton(
+                    //     style: ButtonStyle(
+                    //         backgroundColor:
+                    //             MaterialStateProperty.all(contactMeCardBg),
+                    //         padding:
+                    //             MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    //                 EdgeInsets.symmetric(
+                    //                     horizontal: 70, vertical: 20)),
+                    //         shape:
+                    //             MaterialStateProperty.all<RoundedRectangleBorder>(
+                    //                 RoundedRectangleBorder(
+                    //                     borderRadius: BorderRadius.circular(18.0),
+                    //                     side: BorderSide(
+                    //                         color: lightTextColr, width: 2.0)))),
+                    //     child: Text(
+                    //       'Submit',
+                    //       style: Theme.of(context)
+                    //           .textTheme
+                    //           .headline5!
+                    //           .copyWith(color: lightTextColr),
+                    //     ),
+                    //     onPressed: () async {
+                    //       var email = _email.text;
+                    //       var body = _body.text;
+                    //       var name = _name.text;
+                    //       var subj = _subj.text;
+                    //       if(email == null || email.isEmpty) {
+                    //         return;
+                    //       }
+                    //       if(body == null || body.isEmpty) {
+                    //         return;
+                    //       }
+                    //       if(name == null || name.isEmpty) {
+                    //         return;
+                    //       }
+                    //       if(subj == null || subj.isEmpty) {
+                    //         return;
+                    //       }
+                    //       final Uri _emailLaunchUri = Uri(
+                    //           scheme: 'mailto',
+                    //           path: 'samrat.garai94@gmail.com',
+                    //           queryParameters: {
+                    //             'subject': subj,
+                    //             'body': body,
+                    //           }
+                    //       );
+                    //       print(_emailLaunchUri.toString());
+                    //       String url = _emailLaunchUri.toString();
+                    //       print(kIsWeb);
+                    //       // flutter web
+                    //       if (kIsWeb) {
+                    //         // html.document.window!.location.href = url;
+                    //         // window.open(url, 'Link');
+                    //         js.context.callMethod("open", [url]);
+                    //       }
+                    //       // android or ios
+                    //       // else if (Platform.isAndroid || Platform.isIOS) {
+                    //       //   if (await canLaunch(url)) {
+                    //       //     await launch(url);
+                    //       //   }else {
+                    //       //     throw 'Could not launch $url';
+                    //       //   }
+                    //       // }
+                    //       // unknown platform
+                    //       else {
+                    //         throw new Exception('Unsupported platform');
+                    //       }
+                    //       // print(result);
+                    //     },
+                    //   ),
+                    // ),
+                    PaddedDivider(),
+                    IntrinsicHeight(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          InkWell(
+                            onTap: () async {
+                              await launch(
+                                URL_MY_LINKEDLN,
+                              );
+                            },
+                            child: Icon(AntDesign.linkedin_square,
+                                size: 80, color: contactMeCardBg),
+                          ),
+                          VerticalDivider(
+                            thickness: 2,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Tooltip(
+                              message: 'Send mail to samrat.garai94@gmail.com',
+                              child: TextButton.icon(
+                                onPressed: () async {
+                                  String mailId = 'samrat.garai94@gmail.com';
+                                  final Uri _emailLaunchUri = Uri(
+                                    scheme: 'mailto',
+                                    path: mailId,
+                                  );
+                                  try {
+                                    if (kIsWeb) {
+                                      await Clipboard.setData(
+                                          ClipboardData(text: mailId));
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) => AlertDialog(
+                                                title:
+                                                    Text('Email id is copied!'),
+                                                actions: [
+                                                  Center(
+                                                    child: ElevatedButton(
+                                                      onPressed: () async {
+                                                        await launch(
+                                                            "https://mail.google.com/mail/u/0/#inbox");
+                                                        Navigator.pop(context);
+                                                      },
+                                                      child: Text(
+                                                          'Open email client'),
+                                                    ),
+                                                  )
+                                                ],
+                                              ));
+                                      return;
+                                    }
+                                    await launch(_emailLaunchUri.toString());
+                                  } catch (e) {}
+                                },
+                                icon: Icon(AntDesign.mail,
+                                    size: 55, color: Colors.white),
+                                label: Text(
+                                  'samrat.gara94@gmail.com',
+                                  style: GoogleFonts.workSans(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        contactMeCardBg)),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      VerticalDivider(),
-                      IconButton(
-                        onPressed: () async{
-                          await launch(URL_MY_LINKEDLN);
-                        },
-                        icon: Icon(AntDesign.linkedin_square),
-                      ),
-                      VerticalDivider(),
-                      IconButton(
-                        onPressed: () async{
-                          await launch(URL_MY_INSTA);
-                        },
-                        icon: Icon(AntDesign.instagram),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                ],
+                    ),
+                    SizedBox(
+                      height: 50,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-      ]),
+            ],
+          ),
+        ]),
+      ),
     );
   }
 }
@@ -1029,7 +1175,7 @@ class ProjectCard extends StatelessWidget {
       this.tagName = "",
       this.roles,
       this.isScratchDev = false,
-        this.urlDetails,
+      this.urlDetails,
       Key? key})
       : super(key: key);
 
@@ -1051,7 +1197,7 @@ class ProjectCard extends StatelessWidget {
                         : ConstrainedBox(
                             constraints: BoxConstraints(maxWidth: 400),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Tag(
@@ -1066,15 +1212,17 @@ class ProjectCard extends StatelessWidget {
                     actions: [
                       Center(
                         child: ElevatedButton(
-                            onPressed: () async{
-                              if(urlDetails!=null) {
+                            onPressed: () async {
+                              if (urlDetails != null) {
                                 await launch(urlDetails!);
                               }
                               Navigator.pop(context, true);
                             },
                             child: Padding(
                                 padding: EdgeInsets.all(10),
-                                child: Text(urlDetails == null ? 'Got it' : "More Details"))),
+                                child: Text(urlDetails == null
+                                    ? 'Got it'
+                                    : "More Details"))),
                       )
                     ],
                   ));
@@ -1085,52 +1233,62 @@ class ProjectCard extends StatelessWidget {
             height: 120,
             width: 430,
             padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
+            child: Stack(
               children: [
-                Container(
-                  height: 65,
-                  width: 65,
-                  child: isOffline
-                      ? Image.asset(iconUrl)
-                      : Image.network(
-                          iconUrl,
-                        ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      projTitle,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline4!
-                          .copyWith(color: Colors.black87),
-                    ),
-                    Text(
-                      projSubTitle,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .copyWith(color: Colors.black45),
-                    )
-                  ],
-                ),
                 isScratchDev
-                    ? Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8),
-                        child: Align(
-                          child: BlinkingText('#ScratchDev'),
-                          alignment: Alignment.topRight,
-                        ),
-                      )
-                    : Container()
-              ],
+                    ? Positioned(
+                  top: 4,
+                      right: 10,
+                      child: Align(
+                        child: BlinkingText('#ScratchDev'),
+                        alignment: Alignment.topRight,
+                      ),
+                    )
+                    : Container(),
+                Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        height: 65,
+                        width: 65,
+                        child: isOffline
+                            ? Image.asset(iconUrl)
+                            : Image.network(
+                                iconUrl,
+                              ),
+                      ),
+                      SizedBox(
+                        width: 18,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            projTitle,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline4!
+                                .copyWith(color: Colors.black87),
+                            overflow: TextOverflow.fade,
+                          ),
+                          Text(
+                            projSubTitle,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6!
+                                .copyWith(color: Colors.black45),
+                            overflow: TextOverflow.fade,
+                          )
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              )],
             ),
           ),
         ),
@@ -1231,7 +1389,7 @@ class Tag extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: BoxConstraints(
-        maxWidth: tagName.length.toDouble() * 18,
+        maxWidth: (tagName.length.toDouble()+8) * 15,
       ),
       child: Card(
         color: expCardBg3,
