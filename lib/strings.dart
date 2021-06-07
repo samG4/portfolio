@@ -8,8 +8,8 @@ const String HOME_LIKE_SKETCHING =
 const String HOME_LIKE_ANIME =
     "I like reading manga and anime. Big fan of One Piece.";
 
-const String MENU_JOURNEY = "My Experience";
-const String MENU_ARTICLE = "About Me";
+const String MENU_EXPERIENCE = "My Experience";
+const String MENU_ABOUT_ME = "About Me";
 const String MENU_CONTACT = "Say Hello";
 
 const String MENU_ROLES = "Roles I played here are...";
@@ -21,7 +21,7 @@ const String PROJ_MARROW_DATE = "Working from Apr. 2019";
 const String PROJ_MARROW_INTRO =
     "I started working in this startup here with only a year experience. So, far the journey has been incredible - We have been maintaining MVP architecture with separate data layer and unit test cases on repository and presenter.";
 const List<String> PROJ_MARROW_KEY_ROLES = [
-  "Lead a team of 3 developers",
+  "Lead a team of 2 developers",
   "Data analysis on issues to improve apps performance",
   "Increased and consistently maintained crash free users from 98% to 99.4% over 7 day period",
   "Setting up the new base architecture, to easily maintain and scale app over time",
@@ -112,20 +112,32 @@ const String PROJ_PLUGINS_INRO =
     "Got a chance to create libraries that were getting used in two live projects - eText and Revel. In 4 months I owned the development and maintenance";
 
 const String ORG_MARROW = "Neuroglia Health Pvt Ltd";
-const String ORG_CTS = "Cognizant Technology Solutions";
+const String ORG_CTS = "Cognizant Tech Sol";
 const String ORG_PERSONAL_PROJ = "Personal Project";
 const String ORG_FREELANCING = "Worked as Freelancer";
 
 
-const String CONTACT_ME_HEADING = "Thanks for taking the time to reach out. How can I help you today?";
+const String CONTACT_ME_HEADING = "Thanks for taking the time to reach out. Feel free to reach out through any platforms mentioned below.";
 const String MY_INTRO_HEAD = "Hi, I'm Samrat. ";
 const String MY_INTRO_HEAD_HAJIMEMASHITE = "はじめまして";
 const String MY_INTRO_HEAD_HAJIMEMASHITE_TOOLTIP = "Nice to meet you.";
 
 const String MY_INTRO_BODY = "My journey began as android developer at 2018. "
-    "Since then, I've collaborated in start-ups, service based MNCs and hackathons. I got an opportunity to collaborate with talented people to create apps for both business and consumer use. I'm confident, naturally curious, quick learner and have learnt many different skills. I love what I do.";
-const String DEV_INTRO = "I like to design and code and bring ideas to life in mobile apps. I have coded continuously for 8-10hrs during hackathons";
+    "Since then, I've collaborated in start-ups, service based MNCs and hackathons. I got many opportunities to collaborate with talented people to create apps for both business and consumer use. I'm confident, naturally curious, quick learner and have learnt many different skills. I love what I do.";
+const String DEV_INTRO = "I like to design and code and bring ideas to life through mobile apps. I have coded continuously for 8-10hrs during hackathons";
+const String ACT_INTRO = "I like to extend my skill set over all my interests horizon. This is what motivates me to try out new things";
 const String DEV_TOOLS = "Android Studio, Visual Code, Big Query, Firebase services, Bitbucket, Github, Terminal";
+const String ACT_TOOLS = "Wacom One, Photoshop, Blender";
+
+const URL_MARROW = "https://play.google.com/store/apps/details?id=com.marrow";
+const URL_ETEXT = "https://play.google.com/store/apps/details?id=com.pearsoned.etext2he";
+const URL_WHATS_EASY = "https://drive.google.com/file/d/1DtXr9Ojo091lGloXjz9s51OiO5sKJ3ZM/view?usp=sharing";
+const URL_CROSSHELMET = "https://play.google.com/store/apps/details?id=com.lcs.crosshelmet";
+const URL_CROTON = "https://play.google.com/store/apps/details?id=com.croton.merchant";
+const URL_MY_GITHUB = "https://github.com/samG4";
+const URL_MY_INSTA = "https://www.instagram.com/samrat_garai/";
+const URL_MY_LINKEDLN = "https://www.linkedin.com/in/samrat-garai-397080104/";
+
 const int TAG_FULLTIME = 1;
 const int TAG_FREELANCE = 2;
 const int TAG_PERSONAL = 3;
