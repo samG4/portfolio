@@ -111,8 +111,8 @@ const String PROJ_PLUGINS_DATE = "Jan. 2018 - Apr. 2019";
 const String PROJ_PLUGINS_INRO =
     "Got a chance to create libraries that were getting used in two live projects - eText and Revel. In 4 months I owned the development and maintenance";
 
-const String ORG_MARROW = "Dailyrounds";
-const String ORG_CTS = "Cognizant";
+const String ORG_MARROW = "Fulltime in Dailyrounds";
+const String ORG_CTS = "Fulltime in Cognizant";
 const String ORG_PERSONAL_PROJ = "Personal Project";
 const String ORG_FREELANCING = "Worked as Freelancer";
 
